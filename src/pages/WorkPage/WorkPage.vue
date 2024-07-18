@@ -19,27 +19,37 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+
+const faceswapimg = computed(
+  () => new URL(`./images/faceswapimg.png`, import.meta.url).href
+)
+const Fullcalendar = computed(
+  () => new URL(`./images/scott02.jpg`, import.meta.url).href
+)
+const QueensGame = computed(
+  () => new URL(`./images/queeensgame.png`, import.meta.url).href
+)
 
 const imgs = ref([
     {
         "id":1,
         "url": "https://github.com/scottJinXiang/FaceSwap_application",
-        "src": "./src/pages/WorkPage/images/faceswapimg.png",
+        "src": faceswapimg,
         "title": "FaceSwap application",
         "extrenal": true
     },
     {
         "id":2,
         "url": "/project/fullcalendar",
-        "src": "./src/pages/WorkPage/images/scott02.jpg",
+        "src": Fullcalendar,
         "title": "Fullcalendar practice",
         "extrenal": false
     },
     {
         "id":3,
         "url": "/queens-game",
-        "src": "./src/pages/WorkPage/images/queeensgame.png",
+        "src": QueensGame,
         "title": "QueensGame",
         "extrenal": false
     },
