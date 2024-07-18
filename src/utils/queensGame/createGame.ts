@@ -1,13 +1,11 @@
-import { ref, type Ref, computed } from 'vue'
-import { sectionGrid, type SectionGrid } from './queensGame'
+import { ref, computed, type Ref, type ComputedRef } from 'vue';
+import { sectionGrid } from '../../data/queensGame/sectionGrid'
+
 
 interface Cell {
-    content: any;
+    content: 'marked' | 'queen' | null;
     section: number;
 }
-
-type Board = Cell[][];
-
 interface Queen {
     row: number;
     col: number;
@@ -15,8 +13,8 @@ interface Queen {
 }
 
 
-function createBoard(): Board {
-    return sectionGrid.map((row:number[]) =>
+function createBoard(): Cell[][] {
+    return sectionGrid.map((row) =>
         row.map((section) => ({
             content: null,
             section
@@ -25,7 +23,7 @@ function createBoard(): Board {
 }
 
 export function createGame() {
-    const boardState = ref(createBoard())
+    const boardState: Ref<Cell[][]> = ref(createBoard())
     const queens: Ref<Queen[]> = ref([])
 
     function resetValidations(): void {
@@ -33,9 +31,9 @@ export function createGame() {
     }
 
     function validateRow(rowIndex: number): boolean {
-        const queensInRow: Queen[] = queens.value.filter((queen) => queen.row === rowIndex)
+        const queensInRow: Array<Queen> = queens.value.filter((queen) => queen.row === rowIndex)
 
-        if (queensInRow.length > 1) {
+        if (queensInRow.length > 1 ){
             queensInRow.forEach((queen) => (queen.valid = false))
             return false
         }
@@ -43,7 +41,7 @@ export function createGame() {
     }
 
     function validateColumn(columnIndex: number): boolean {
-        const queensInColumn: Queen[] = queens.value.filter((queen) => queen.col === columnIndex)
+        const queensInColumn: Array<Queen> = queens.value.filter((queen) => queen.col === columnIndex)
 
         if (queensInColumn.length > 1) {
             queensInColumn.forEach((queen) => (queen.valid = false))
@@ -53,7 +51,7 @@ export function createGame() {
     }
 
     function validateSection(section: number): boolean {
-        const queensInSection = queens.value.filter((queen) => {
+        const queensInSection: Array<Queen> = queens.value.filter((queen) => {
             const { row, col } = queen
             return boardState.value[row][col].section === section
         })
@@ -69,14 +67,12 @@ export function createGame() {
         const directions: [number, number][] = [
             [-1, -1],
             [-1, 1],
-            [1,-1],
+            [1, -1],
             [1, 1]
         ]
 
         let conflicts: boolean = false
-
         const { row: rowIndex, col: colIndex } = queen
-
         for (const [dx, dy] of directions) {
             const newRow: number = rowIndex + dx
             const newCol: number = colIndex + dy
@@ -87,8 +83,7 @@ export function createGame() {
                 newCol >= 0 &&
                 newCol < boardState.value[0].length
             ) {
-                const adjacentQueen = queens.value.find((q) => q.row === newRow && q.col === newCol)
-
+                const adjacentQueen: Queen | undefined = queens.value.find((q) => q.row === newRow && q.col === newCol)
                 if (adjacentQueen) {
                     queen.valid = false
                     adjacentQueen.valid = false
@@ -105,11 +100,11 @@ export function createGame() {
 
         for (const queen of queens.value) {
             const { row, col } = queen
-            const cell = boardState.value[row][col]
-            const rowValid = validateRow(row)
-            const columnValid = validateColumn(col)
-            const sectionValid = validateSection(cell.section)
-            const diagonalValid = checkDiagonalConflicts(queen)
+            const cell: Cell = boardState.value[row][col]
+            const rowValid: boolean = validateRow(row)
+            const columnValid: boolean = validateColumn(col)
+            const sectionValid: boolean = validateSection(cell.section)
+            const diagonalValid: boolean = checkDiagonalConflicts(queen)
 
             queen.valid = rowValid && columnValid && sectionValid && diagonalValid
         }
@@ -121,39 +116,38 @@ export function createGame() {
         )
     }
 
+    function toggleCell(rowIndex: number, cellIndex: number): void {
+        const cell: Cell = boardState.value[rowIndex][cellIndex]
 
-    function toggleCell(rowIndex: number, cellIndex: number) {
-        const cell = boardState.value[rowIndex][cellIndex];
-
-        if(!cell.content) {
-            cell.content = 'marked';
+        if (!cell.content) {
+            cell.content = 'marked'
         } else if (cell.content === 'marked') {
-            cell.content = 'queen';
-            queens.value.push({ row: rowIndex, col: cellIndex, valid: true });
+            cell.content = 'queen'
+            queens.value.push({ row: rowIndex, col: cellIndex, valid: true })
         } else {
-            cell.content = null;
-            queens.value = queens.value.filter((queen) => queen.row !== rowIndex || queen.col !== cellIndex);
+            queens.value = queens.value.filter(
+                (queen) => queen.row !== rowIndex || queen.col !== cellIndex
+            )
+            cell.content = null
         }
 
-        validateBoard();
+        validateBoard()
     }
 
-    function clearBoard() {
-        boardState.value = boardState.value.map((row) => row.map((cell) => ({
-            ...cell, content: null
-        })))
-
+    function clearBoard(): void {
+        boardState.value = boardState.value.map((row) =>
+            row.map((cell) => ({ ...cell, content: null }))
+        )
         queens.value = []
     }
 
-    const gameWon = computed(() => {
+    const gameWon: ComputedRef<boolean> = computed(() => {
         if (queens.value.length !== sectionGrid.length) {
             return false
         }
 
         return queens.value.every((queen) => queen.valid)
     })
-
 
     return {
         boardState,

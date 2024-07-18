@@ -5,6 +5,7 @@
 
         <div class="work__container bd-grid">
             <div v-for="img in imgs" :key="img.id" class="work__img">
+                <label>{{ img.title }}</label>
                 <a v-if="img.extrenal" :href="img.url">
                     <img :src="img.src" alt="" :title="img.title">
                 </a>
@@ -24,22 +25,22 @@ const imgs = ref([
     {
         "id":1,
         "url": "https://github.com/scottJinXiang/FaceSwap_application",
-        "src": "/src/pages/WorkPage/images/faceswapimg.png",
-        "title": "https://github.com/scottJinXiang/FaceSwap_application",
+        "src": "./src/pages/WorkPage/images/faceswapimg.png",
+        "title": "FaceSwap application",
         "extrenal": true
     },
     {
         "id":2,
         "url": "/project/fullcalendar",
-        "src": "/src/pages/WorkPage/images/scott02.jpg",
+        "src": "./src/pages/WorkPage/images/scott02.jpg",
         "title": "Fullcalendar practice",
         "extrenal": false
     },
     {
         "id":3,
-        "url": "",
-        "src": "",
-        "title": "",
+        "url": "/queens-game",
+        "src": "./src/pages/WorkPage/images/queeensgame.png",
+        "title": "QueensGame",
         "extrenal": false
     },
     {
@@ -82,6 +83,8 @@ const imgs = ref([
     justify-self: center;
     align-self: center;
     border: 1px solid var(--second-color);
+    max-width: 300px;
+    max-height: 300px;
 }
 .work__img img{
     transition: 1s;

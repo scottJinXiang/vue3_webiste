@@ -9,7 +9,7 @@
             </div>
 
             <div>
-                <h2 class="about__subtitle">I'am Scott</h2>
+                <h2 class="about__subtitle">I'm Scott</h2>
                 <p class="about__text">前端工作求職中</p>
             </div>
         </div>
