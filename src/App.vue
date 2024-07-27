@@ -271,39 +271,6 @@ img{
     box-shadow: 0 10px 36px rgba(0,0,0,.15);
 }
 
-/* ===== ABOUT ===== */
-
-
-/* ===== SKILLS ==== */
-
-
-/* ===== WORK ===== */
-
-
-/* ===== CONTACT ===== */
-
-
-/* ===== FOOTER =====
-.footer{
-    background-color: var(--second-color);
-    color: #fff;
-    text-align: center;
-    font-weight: var(--font-semi);
-    padding: 2rem 0;
-}
-.footer__title{
-    font-size: 2rem;
-    margin-bottom: var(--mb-4);
-}
-.footer__social{
-    margin-bottom: var(--mb-4);
-}
-.footer__icon{
-    font-size: 1.5rem;
-    color: #fff;
-    margin: 0 var(--mb-2);
-} */
-
 /* ===== MEDIA QUERIES ===== */
 @media screen and (min-width: 768px) {
     body{

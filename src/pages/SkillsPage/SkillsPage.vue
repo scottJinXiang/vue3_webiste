@@ -58,7 +58,10 @@ const skillDetails = ref([
 </script>
 
 <style scoped>
-.skills__container{
+.skills{
+    min-height: calc(100vh);
+    row-gap: 1rem;
+}.skills__container{
     row-gap: 2rem;
     text-align: center;
 }

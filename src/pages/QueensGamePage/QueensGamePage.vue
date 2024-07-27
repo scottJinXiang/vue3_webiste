@@ -39,7 +39,7 @@
 
 <template>
     <div class="l-main">
-        <section class="section">
+        <section class="queen-home section">
             
             <div class="center" style="margin: 10% 3% 0% 3%;">
                 皇后是一款結合了掃雷、象棋和數獨元素的益智遊戲遊戲在一個8x8的棋盤上進行，目標是按照特定規則在棋盤上放置八個皇后，同時滿足所有這些約束條件即可勝利
@@ -51,6 +51,10 @@
                     <li>👑每個顏色區域內一個皇后</li>
                     <li>👑任何兩個皇后不能放置在相鄰的對角線格子上</li>
                 </ul>
+            </div>
+            
+            <div class="center">
+                <WinMessage :win="gameWon" />
             </div>
             <div class="game-board">
                 <template v-for="(row, rowIndex) in boardState">
@@ -68,9 +72,6 @@
                 <AppTimer />
             </div>
             <div class="center">
-                <WinMessage v-if="gameWon" />
-            </div>
-            <div class="center">
                 <AppButton @click="resetGame">Reset Game</AppButton>
                 <AppButton @click="clearBoard">Clear Board</AppButton>
             </div>
@@ -79,6 +80,10 @@
 </template>
 
 <style scoped>
+    .queen-home {
+        min-height: calc(100vh);
+        row-gap: 1rem;
+    }
     .game-board {
         display: grid;
         justify-content: center;

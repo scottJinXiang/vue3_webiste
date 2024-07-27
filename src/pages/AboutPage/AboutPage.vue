@@ -1,6 +1,6 @@
 <template>
   <div class="l-main">
-    <section class="about section " id="about">
+    <section class="about section" id="about">
         <h2 class="section-title">About</h2>
 
         <div class="about__container bd-grid">
@@ -21,6 +21,11 @@
 </script>
 
 <style scoped>
+
+.about{
+    min-height: calc(100vh);
+    row-gap: 1rem;
+}
 .about__container{
     row-gap: 2rem;
     text-align: center;

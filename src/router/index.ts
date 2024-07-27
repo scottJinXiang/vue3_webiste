@@ -20,7 +20,12 @@ const routes= [
   {
     path: '/work',
     name: 'work',
-    component: WorkPage
+    component: WorkPage,
+  },
+  {
+    path: '/work/queens-game',
+    name: 'queens-game',
+    component: QueensGamePage,
   },
   {
     path: '/contact',
@@ -31,11 +36,6 @@ const routes= [
     path: '/skills',
     name: 'skills',
     component: SkillsPage
-  },
-  {
-    path:'/queens-game',
-    name:'queensGame',
-    component: QueensGamePage
   },
   {
     path:'/:pathMatch(.*)*',

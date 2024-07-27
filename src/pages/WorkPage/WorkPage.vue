@@ -48,7 +48,7 @@ const imgs = ref([
     },
     {
         "id":3,
-        "url": "/queens-game",
+        "url": "/work/queens-game",
         "src": QueensGame,
         "title": "QueensGame",
         "extrenal": false
@@ -80,7 +80,10 @@ const imgs = ref([
 <style scoped>
 .work{
     text-align: center;
+    min-height: calc(100vh);
+    row-gap: 1rem;
 }
+
 .work__container{
     row-gap: 2rem;
 }
