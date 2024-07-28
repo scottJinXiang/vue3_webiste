@@ -8,7 +8,7 @@
                 <h2 class="skills__subtitle">Profesional Skills</h2>
                 <p class="skills__text"></p>
 
-                <SkillsData v-for="(skillDetail, index) in skillDetails" v-bind="skillDetail" :key="index" />
+                <SkillsData v-for="(skillDetail, index) in skillDetails" v-bind="skillDetail" :key="index" :skill-delay-time="index/10" />
 
             </div>
             <div class="skills__img">

@@ -39,12 +39,12 @@
 
 <template>
     <div class="l-main">
-        <section class="queen-home section">
+        <section class="queen-home section center">
             
-            <div class="center" style="margin: 10% 3% 0% 3%;">
+            <div style="margin: 10% 3% 0% 3%;">
                 皇后是一款結合了掃雷、象棋和數獨元素的益智遊戲遊戲在一個8x8的棋盤上進行，目標是按照特定規則在棋盤上放置八個皇后，同時滿足所有這些約束條件即可勝利
             </div>
-            <div class="center" style="margin-bottom: 2%;">
+            <div style="margin-bottom: 2%;">
                 <ul>
                     <li>👑每行一個皇后</li>
                     <li>👑每列一個皇后</li>
@@ -53,9 +53,7 @@
                 </ul>
             </div>
             
-            <div class="center">
                 <WinMessage :win="gameWon" />
-            </div>
             <div class="game-board">
                 <template v-for="(row, rowIndex) in boardState">
                     <GridCell
@@ -68,9 +66,7 @@
                     />
                 </template>
             </div>
-            <div class="center">
-                <AppTimer />
-            </div>
+            <AppTimer />
             <div class="center">
                 <AppButton @click="resetGame">Reset Game</AppButton>
                 <AppButton @click="clearBoard">Clear Board</AppButton>
@@ -83,10 +79,17 @@
     .queen-home {
         min-height: calc(100vh);
         row-gap: 1rem;
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
     }
     .game-board {
         display: grid;
+        align-self: center;
         justify-content: center;
+        place-content: center;
+        min-width: 420px;
+        min-height: 420px;
         grid-template-columns: repeat(8, 42px);
         grid-template-rows: repeat(8, 42px);
         border: 1px solid #100;

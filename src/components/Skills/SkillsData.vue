@@ -3,6 +3,7 @@
         skillName: string,
         skillPercentage: number,
         skillIcon: string[],
+        skillDelayTime: number,
     }
     const props = defineProps<Props>()
 
@@ -27,6 +28,8 @@
     font-size: 2rem;
     margin-right: var(--mb-2);
     color: var(--first-color);
+    animation: skill 2s;
+    animation-delay: v-bind(skillDelayTime + "s");
 }
 .skills__data{
     display: flex;
@@ -38,6 +41,7 @@
     margin-bottom: var(--mb-4);
     border-radius: .5rem;
     box-shadow: 0 4px 25px rgba(14,36,49,.15);
+    overflow: hidden;
 }
 .skills__bar{
     position: absolute;
@@ -51,10 +55,24 @@
 
 .skills__width{
     width: v-bind(skillPercentage + "%");
+    animation: skill 2s;
+    animation-delay: v-bind(skillDelayTime + "s");
 }
 
 .skills__names{
     display: flex;
     align-items: center;
+}
+
+@keyframes skill{
+    0%, 20%, 50%, 80%, 100% {
+    transform: translateX(0);
+  }
+	40% {
+    transform: translateX(-200px);
+  }
+	60% {
+    transform: translateX(-75px);
+  }
 }
 </style>

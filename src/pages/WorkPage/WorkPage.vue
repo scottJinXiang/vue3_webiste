@@ -98,6 +98,7 @@ const imgs = ref([
     border: 1px solid var(--second-color);
     max-width: 300px;
     max-height: 300px;
+    animation: imgshow 2s;
 }
 .work__img img{
     transition: 1s;
@@ -105,5 +106,14 @@ const imgs = ref([
 }
 .work__img img:hover{
     transform: scale(1.5);
+}
+
+@keyframes imgshow {
+    from {
+        height: 0;
+    }
+    to {
+        height: 300px;
+    }
 }
 </style>

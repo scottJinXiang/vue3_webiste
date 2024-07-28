@@ -6,8 +6,8 @@ defineProps(["win"]);
 
 <template>
     <template v-if="win">
-        <span v-confetti="{particleCount: 200, force: 0.3}"/>
         <div class="win-message">
+            <span v-confetti="{particleCount: 200, force: 0.3}"/>
             Congratulations! You have won the game! 🎉
         </div>
     </template>
